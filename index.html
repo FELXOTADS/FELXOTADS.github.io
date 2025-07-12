@@ -1105,6 +1105,63 @@
         .theme-light-mode .features li {
             border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
         }
+        
+        /* Новый стиль для кнопки подачи заявки */
+        .submit-application {
+            text-align: center;
+            margin: 80px 0;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .application-title {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--accent-light);
+            text-shadow: var(--neon-glow);
+            text-align: center;
+        }
+        
+        .application-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 20px 60px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), var(--neon-glow);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: neon-pulse 2s infinite alternate;
+        }
+        
+        .application-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 
+                        0 0 20px var(--accent), 
+                        0 0 30px var(--accent);
+        }
+        
+        .application-btn i {
+            margin-right: 10px;
+        }
+        
+        .application-description {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 30px auto;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body class="theme-pink-dark">
@@ -1115,7 +1172,7 @@
                 <li><a href="#youtube" class="active">YouTube Реклама</a></li>
                 <li><a href="#telegram">Telegram Реклама</a></li>
                 <li><a href="#themes">Темы оформления</a></li>
-                <li><a href="#order-form">Заказать рекламу</a></li>
+                <li><a href="#application">Подать заявку</a></li>
             </ul>
         </nav>
         
@@ -1155,8 +1212,8 @@
         <section class="hero">
             <h2 class="animate" data-lang-key="hero-title">Реклама для канала FELXOT</h2>
             <p class="animate" data-lang-key="hero-subtitle">Максимальный охват аудитории с профессиональными рекламными решениями. Эффективные пакеты для YouTube и Telegram по лучшим ценам!</p>
-            <a href="#order-form" class="contact-btn animate" data-lang-key="contact-btn">
-                <i class="fas fa-shopping-cart"></i> Заказать рекламу
+            <a href="#application" class="contact-btn animate" data-lang-key="contact-btn">
+                <i class="fas fa-shopping-cart"></i> Подать заявку
             </a>
         </section>
         
@@ -1174,7 +1231,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-simple">Простая интеграция</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Базовый YouTube ($99)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
                 
                 <div class="pricing-card animate">
@@ -1187,7 +1244,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-targeting">Базовый таргетинг</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Стандарт YouTube ($249)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
                 
                 <div class="pricing-card animate popular">
@@ -1201,7 +1258,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-analytics">Аналитика эффективности</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Премиум YouTube ($499)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
                 
                 <div class="pricing-card animate">
@@ -1214,7 +1271,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-cta">Призыв к действию</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Делюкс YouTube ($749)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
                 
                 <div class="pricing-card animate">
@@ -1227,7 +1284,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-personal">Персонализация</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Максимальный YouTube ($999)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
                 
                 <div class="pricing-card animate">
@@ -1240,7 +1297,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-priority">Приоритетное размещение</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Эксклюзив YouTube ($1499)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
             </div>
         </section>
@@ -1258,7 +1315,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-duration-24h">24 часа размещения</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Мини Telegram ($19)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
                 
                 <div class="pricing-card animate">
@@ -1270,7 +1327,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-duration-3d">3 дня размещения</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Экспресс Telegram ($39)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
                 
                 <div class="pricing-card animate">
@@ -1282,7 +1339,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-duration-7d">7 дней размещения</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Популярный Telegram ($59)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
                 
                 <div class="pricing-card animate popular">
@@ -1295,7 +1352,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-pinned">Закреплённый пост</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Рекомендуемый Telegram ($79)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
                 
                 <div class="pricing-card animate">
@@ -1307,7 +1364,7 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-pinned">Закреплённый пост</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="VIP Telegram ($99)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
                 
                 <div class="pricing-card animate">
@@ -1319,49 +1376,18 @@
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-justified">Оправданная цена</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-lang-key="feature-buttons">Интерактивные кнопки</span></li>
                     </ul>
-                    <button class="animated-btn choose-package" data-package="Премиум Telegram ($149)" data-lang-key="choose-btn">Выбрать</button>
+                    <a href="#application" class="animated-btn" data-lang-key="choose-btn">Подать заявку</a>
                 </div>
             </div>
         </section>
         
-        <section class="order-form" id="order-form">
-            <h2 class="form-title" data-lang-key="order-title">Заказать рекламу</h2>
-            
-            <div class="selected-package">
-                <h4 data-lang-key="selected-package">Выбранный пакет:</h4>
-                <div class="package-info" id="selected-package-info" data-lang-key="no-package">Пакет не выбран</div>
-            </div>
-            
-            <form id="ad-order-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name" data-lang-key="form-name">Ваше имя</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company" data-lang-key="form-company">Компания (необязательно)</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email" data-lang-key="form-email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone" data-lang-key="form-phone">Телефон</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message" data-lang-key="form-message">Дополнительная информация</label>
-                    <textarea id="message" name="message" rows="4"></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn" data-lang-key="form-submit">Отправить заявку</button>
-            </form>
+        <!-- Секция подачи заявки -->
+        <section class="submit-application" id="application">
+            <h2 class="application-title" data-lang-key="application-title">Подать заявку на рекламу</h2>
+            <p class="application-description" data-lang-key="application-description">Для оформления заказа на рекламу, пожалуйста, перейдите в нашего Telegram бота. Он поможет вам оформить заявку и ответит на все ваши вопросы!</p>
+            <a href="https://t.me/FxAds_bot" target="_blank" class="application-btn" data-lang-key="application-btn">
+                <i class="fab fa-telegram"></i> Перейти в Telegram бота
+            </a>
         </section>
         
         <footer>
@@ -1383,7 +1409,7 @@
             ru: {
                 "hero-title": "Реклама для канала FELXOT",
                 "hero-subtitle": "Максимальный охват аудитории с профессиональными рекламными решениями. Эффективные пакеты для YouTube и Telegram по лучшим ценам!",
-                "contact-btn": "Заказать рекламу",
+                "contact-btn": "Подать заявку",
                 "youtube-title": "Реклама на YouTube",
                 "telegram-title": "Реклама в Telegram",
                 "package-basic": "Базовый",
@@ -1428,7 +1454,7 @@
                 "feature-duration-7d": "7 дней размещения",
                 "feature-pinned": "Закреплённый пост",
                 "feature-justified": "Оправданная цена",
-                "choose-btn": "Выбрать пакет",
+                "choose-btn": "Подать заявку",
                 "placement-title": "Оптимальное размещение рекламы в видео",
                 "placement-start": "Начало",
                 "placement-prebegin": "Предначало",
@@ -1443,20 +1469,14 @@
                 "placement-info": "Мы тщательно анализируем контент и выбираем оптимальные моменты для размещения рекламы, чтобы обеспечить максимальный эффект и вовлечённость вашей целевой аудитории. Наши специалисты подберут идеальное время для показа вашего рекламного сообщения.",
                 "copyright": "© 2025 FxAds. Все права защищены.",
                 "popular": "ПОПУЛЯРНЫЙ",
-                "order-title": "Заказать рекламу",
-                "selected-package": "Выбранный пакет:",
-                "no-package": "Пакет не выбран",
-                "form-name": "Ваше имя",
-                "form-company": "Компания (необязательно)",
-                "form-email": "Email",
-                "form-phone": "Телефон",
-                "form-message": "Дополнительная информация",
-                "form-submit": "Отправить заявку"
+                "application-title": "Подать заявку на рекламу",
+                "application-btn": "Перейти в Telegram бота",
+                "application-description": "Для оформления заказа на рекламу, пожалуйста, перейдите в нашего Telegram бота. Он поможет вам оформить заявку и ответит на все ваши вопросы!"
             },
             en: {
                 "hero-title": "Advertising for FELXOT Channel",
                 "hero-subtitle": "Maximum audience reach with professional advertising solutions. Effective packages for YouTube and Telegram at the best prices!",
-                "contact-btn": "Order Advertising",
+                "contact-btn": "Submit Application",
                 "youtube-title": "YouTube Advertising",
                 "telegram-title": "Telegram Advertising",
                 "package-basic": "Basic",
@@ -1501,7 +1521,7 @@
                 "feature-duration-7d": "7 days placement",
                 "feature-pinned": "Pinned post",
                 "feature-justified": "Justified price",
-                "choose-btn": "Select Package",
+                "choose-btn": "Submit Application",
                 "placement-title": "Optimal Video Ad Placement",
                 "placement-start": "Beginning",
                 "placement-prebegin": "Pre-beginning",
@@ -1516,20 +1536,14 @@
                 "placement-info": "We carefully analyze content and select optimal moments for ad placement to ensure maximum effect and engagement with your target audience. Our specialists will choose the perfect time to display your advertising message.",
                 "copyright": "© 2025 FxAds. All rights reserved.",
                 "popular": "POPULAR",
-                "order-title": "Order Advertising",
-                "selected-package": "Selected Package:",
-                "no-package": "No package selected",
-                "form-name": "Your Name",
-                "form-company": "Company (optional)",
-                "form-email": "Email",
-                "form-phone": "Phone",
-                "form-message": "Additional Information",
-                "form-submit": "Submit Application"
+                "application-title": "Submit Advertising Application",
+                "application-btn": "Go to Telegram Bot",
+                "application-description": "To place an advertising order, please go to our Telegram bot. It will help you submit your application and answer all your questions!"
             },
             es: {
                 "hero-title": "Publicidad para el Canal FELXOT",
                 "hero-subtitle": "Alcance máximo de audiencia con soluciones publicitarias profesionales. ¡Paquetes efectivos para YouTube y Telegram a los mejores precios!",
-                "contact-btn": "Ordenar Publicidad",
+                "contact-btn": "Enviar Solicitud",
                 "youtube-title": "Publicidad en YouTube",
                 "telegram-title": "Publicidad en Telegram",
                 "package-basic": "Básico",
@@ -1574,7 +1588,7 @@
                 "feature-duration-7d": "7 días de colocación",
                 "feature-pinned": "Publicación fijada",
                 "feature-justified": "Precio justificado",
-                "choose-btn": "Seleccionar Paquete",
+                "choose-btn": "Enviar Solicitud",
                 "placement-title": "Ubicación Óptima de Anuncios en Video",
                 "placement-start": "Inicio",
                 "placement-prebegin": "Pre-inicio",
@@ -1589,15 +1603,9 @@
                 "placement-info": "Analizamos cuidadosamente el contenido y seleccionamos los momentos óptimos para la colocación de anuncios para garantizar el máximo efecto y participación de su público objetivo. Nuestros especialistas elegirán el momento perfecto para mostrar su mensaje publicitario.",
                 "copyright": "© 2025 FxAds. Todos los derechos reservados.",
                 "popular": "POPULAR",
-                "order-title": "Ordenar Publicidad",
-                "selected-package": "Paquete Seleccionado:",
-                "no-package": "Ningún paquete seleccionado",
-                "form-name": "Tu Nombre",
-                "form-company": "Compañía (opcional)",
-                "form-email": "Email",
-                "form-phone": "Teléfono",
-                "form-message": "Información Adicional",
-                "form-submit": "Enviar Solicitud"
+                "application-title": "Enviar Solicitud de Publicidad",
+                "application-btn": "Ir al Bot de Telegram",
+                "application-description": "Para realizar un pedido de publicidad, por favor diríjase a nuestro bot de Telegram. ¡Le ayudará a enviar su solicitud y responderá a todas sus preguntas!"
             }
         };
 
@@ -1646,48 +1654,6 @@
             const themeType = getComputedStyle(document.documentElement).getPropertyValue('--theme-type');
             document.getElementById('current-theme').textContent = `${themeName} (${themeType})`;
         }
-        
-        // Выбор пакета
-        let selectedPackage = null;
-        
-        document.querySelectorAll('.choose-package').forEach(button => {
-            button.addEventListener('click', function() {
-                selectedPackage = this.getAttribute('data-package');
-                document.getElementById('selected-package-info').textContent = selectedPackage;
-                
-                // Прокрутка к форме заказа
-                document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-        
-        // Отправка формы
-        document.getElementById('ad-order-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (!selectedPackage) {
-                alert('Пожалуйста, выберите пакет рекламы');
-                return;
-            }
-            
-            // Сбор данных формы
-            const formData = {
-                name: document.getElementById('name').value,
-                company: document.getElementById('company').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                message: document.getElementById('message').value,
-                package: selectedPackage
-            };
-            
-            // Здесь можно добавить отправку данных на сервер
-            // Вместо этого покажем сообщение
-            alert(`Заявка отправлена!\n\nВыбранный пакет: ${selectedPackage}\n\nМы свяжемся с вами в ближайшее время.`);
-            
-            // Очистка формы
-            this.reset();
-            selectedPackage = null;
-            document.getElementById('selected-package-info').textContent = translations[document.querySelector('.lang-btn.active').getAttribute('data-lang')]['no-package'];
-        });
         
         // Плавная прокрутка для навигации
         document.querySelectorAll('.top-nav a').forEach(anchor => {
