@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Основные цвета по умолчанию (розовая тема) */
             --primary: #6a11cb;
             --secondary: #2575fc;
             --accent: #ff3e78;
@@ -26,7 +25,6 @@
             --neon-glow: 0 0 10px rgba(255, 62, 120, 0.7), 0 0 20px rgba(255, 62, 120, 0.5), 0 0 30px rgba(255, 62, 120, 0.3);
         }
         
-        /* Цветовые темы */
         .theme-pink-dark {
             --primary: #6a11cb;
             --secondary: #2575fc;
@@ -1142,6 +1140,7 @@
             position: relative;
             overflow: hidden;
             animation: neon-pulse 2s infinite alternate;
+            margin-top: 20px;
         }
         
         .application-btn:hover {
@@ -1153,6 +1152,8 @@
         
         .application-btn i {
             margin-right: 10px;
+            font-size: 1.5em;
+            vertical-align: middle;
         }
         
         .application-description {
@@ -1385,7 +1386,9 @@
         <section class="submit-application" id="application">
             <h2 class="application-title" data-lang-key="application-title">Подать заявку на рекламу</h2>
             <p class="application-description" data-lang-key="application-description">Для оформления заказа на рекламу, пожалуйста, перейдите в нашего Telegram бота. Он поможет вам оформить заявку и ответит на все ваши вопросы!</p>
-            <a href="https://t.me/FxAds_bot" target="_blank" class="application-btn" data-lang-key="application-btn">
+            
+            <!-- Кнопка с прямой ссылкой на вашего бота -->
+            <a href="http://t.me/Felxads_bot" target="_blank" class="application-btn" data-lang-key="application-btn">
                 <i class="fab fa-telegram"></i> Перейти в Telegram бота
             </a>
         </section>
