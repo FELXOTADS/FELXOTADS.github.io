@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FXADS - Инновационная реклама в видео</title>
+    <title>FXADS - Инновационная видеореклама</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -32,7 +32,7 @@
         
         /* Языковой переключатель */
         .language-switcher {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 20px;
             z-index: 1001;
@@ -72,9 +72,6 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -88,10 +85,17 @@
             background-clip: text;
             color: transparent;
             letter-spacing: 1px;
+            text-decoration: none;
         }
         
-        .logo span {
-            color: var(--accent);
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
         }
         
         .nav-links {
@@ -170,10 +174,11 @@
         .hero-content {
             max-width: 900px;
             z-index: 2;
+            padding-top: 60px;
         }
         
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
             background: linear-gradient(90deg, var(--accent), var(--primary));
             -webkit-background-clip: text;
@@ -184,9 +189,9 @@
         }
         
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             max-width: 800px;
-            margin-bottom: 2.5rem;
+            margin: 0 auto 2.5rem;
             color: #e0e0ff;
         }
         
@@ -198,7 +203,7 @@
             justify-content: center;
         }
         
-        /* Анимированные кнопки */
+        /* Анимированные кнопки - эффект увеличения */
         .btn {
             padding: 1rem 2.2rem;
             font-size: 1.1rem;
@@ -253,12 +258,12 @@
         }
         
         .btn:hover {
-            transform: translateY(-7px) scale(1.05);
+            transform: scale(1.1);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         
         .btn:active {
-            transform: translateY(0) scale(1);
+            transform: scale(0.95);
         }
         
         /* Секции */
@@ -318,7 +323,7 @@
         .pricing-card:nth-child(3) { animation-delay: 0.6s; }
         
         .pricing-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
@@ -430,7 +435,7 @@
         }
         
         .timeline-content:hover {
-            transform: translateY(-5px);
+            transform: scale(1.03);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
         
@@ -634,12 +639,42 @@
         
         .social-icons a:hover {
             background: var(--gradient);
-            transform: translateY(-5px);
+            transform: scale(1.1);
+        }
+        
+        /* Новый блок подписки в футере */
+        .subscription {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .subscription h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+        
+        .subscription p {
+            margin-bottom: 1.5rem;
+            color: #ddd;
+        }
+        
+        .subscription-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
         
         .copyright {
             color: #777;
             font-size: 0.9rem;
+            margin-top: 2rem;
         }
         
         /* Анимации */
@@ -663,13 +698,19 @@
         }
         
         /* Адаптивность */
-        @media (max-width: 768px) {
+        @media (max-width: 1100px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             
             .hero p {
                 font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .section-title {
+                font-size: 2.2rem;
             }
             
             .timeline::before {
@@ -695,6 +736,32 @@
             .timeline-item:nth-child(even)::before {
                 left: 30px;
             }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(15, 12, 41, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s ease;
+                gap: 2.5rem;
+                padding: 2rem;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
             
             .pricing-cards {
                 flex-direction: column;
@@ -703,7 +770,57 @@
             
             .pricing-card {
                 width: 100%;
-                max-width: 350px;
+                max-width: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .subscription-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .subscription-buttons .btn {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .timeline-item {
+                padding-left: 50px;
+            }
+            
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: 20px;
+            }
+            
+            .contract,
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+            
+            .subscription {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -711,34 +828,36 @@
 <body>
     <!-- Языковой переключатель -->
     <div class="language-switcher">
-        <button class="lang-btn active">RU</button>
-        <button class="lang-btn">EN</button>
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
     </div>
 
     <header>
-        <nav>
-            <div class="logo">FXADS</div>
-            <div class="nav-links">
-                <a href="#pricing">Цены</a>
-                <a href="#timing">Размещение</a>
-                <a href="#contract">Условия</a>
-                <a href="#contact">Контакты</a>
-            </div>
-        </nav>
+        <a href="#" class="logo">FXADS</a>
+        <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+            <a href="#pricing" data-key="pricing">Цены</a>
+            <a href="#timing" data-key="placement">Размещение</a>
+            <a href="#contract" data-key="conditions">Условия</a>
+            <a href="#contact" data-key="contacts">Контакты</a>
+        </div>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Революция в видеорекламе</h1>
-            <p>Инновационные решения для интеграции рекламы в ваши видео с максимальным вовлечением аудитории</p>
+            <h1 data-key="heroTitle">Революция в видеорекламе</h1>
+            <p data-key="heroSubtitle">Инновационные решения для интеграции рекламы в ваши видео с максимальным вовлечением аудитории</p>
             <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">
+                <a href="#contact" class="btn btn-primary" data-key="orderBtn">
                     <i class="fas fa-paper-plane"></i> Заказать рекламу
                 </a>
                 <a href="mailto:advert@fxads.com?subject=Запрос на рекламу" class="btn btn-secondary">
                     <i class="fas fa-envelope"></i> Написать на почту
                 </a>
-                <a href="#pricing" class="btn btn-accent">
+                <a href="#pricing" class="btn btn-accent" data-key="pricesBtn">
                     <i class="fas fa-tags"></i> Посмотреть цены
                 </a>
             </div>
@@ -746,139 +865,139 @@
     </section>
 
     <section id="pricing">
-        <h2 class="section-title">Наши тарифы</h2>
+        <h2 class="section-title" data-key="pricingTitle">Наши тарифы</h2>
         <div class="pricing-cards">
             <div class="pricing-card">
-                <h3>Стартовый</h3>
-                <div class="price">$299<span>за ролик</span></div>
+                <h3 data-key="starterPlan">Стартовый</h3>
+                <div class="price">$299<span data-key="perVideo">за ролик</span></div>
                 <ul class="features">
-                    <li>До 15 секунд рекламы</li>
-                    <li>1 упоминание бренда</li>
-                    <li>Размещение в начале видео</li>
-                    <li>Базовый отчет</li>
-                    <li>Стандартная анимация</li>
+                    <li data-key="feature1">До 15 секунд рекламы</li>
+                    <li data-key="feature2">1 упоминание бренда</li>
+                    <li data-key="feature3">Размещение в начале видео</li>
+                    <li data-key="feature4">Базовый отчет</li>
+                    <li data-key="feature5">Стандартная анимация</li>
                 </ul>
-                <a href="#contact" class="btn btn-primary">Выбрать</a>
+                <a href="#contact" class="btn btn-primary" data-key="chooseBtn">Выбрать</a>
             </div>
             
             <div class="pricing-card">
-                <h3>Профессиональный</h3>
-                <div class="price">$599<span>за ролик</span></div>
+                <h3 data-key="proPlan">Профессиональный</h3>
+                <div class="price">$599<span data-key="perVideo">за ролик</span></div>
                 <ul class="features">
-                    <li>До 30 секунд рекламы</li>
-                    <li>3 упоминания бренда</li>
-                    <li>Размещение в 2-х местах</li>
-                    <li>Детализированный отчет</li>
-                    <li>Продвинутая анимация</li>
-                    <li>Интерактивные элементы</li>
+                    <li data-key="feature6">До 30 секунд рекламы</li>
+                    <li data-key="feature7">3 упоминания бренда</li>
+                    <li data-key="feature8">Размещение в 2-х местах</li>
+                    <li data-key="feature9">Детализированный отчет</li>
+                    <li data-key="feature10">Продвинутая анимация</li>
+                    <li data-key="feature11">Интерактивные элементы</li>
                 </ul>
-                <a href="#contact" class="btn btn-primary">Выбрать</a>
+                <a href="#contact" class="btn btn-primary" data-key="chooseBtn">Выбрать</a>
             </div>
             
             <div class="pricing-card">
-                <h3>Премиум</h3>
-                <div class="price">$999<span>за ролик</span></div>
+                <h3 data-key="premiumPlan">Премиум</h3>
+                <div class="price">$999<span data-key="perVideo">за ролик</span></div>
                 <ul class="features">
-                    <li>До 60 секунд рекламы</li>
-                    <li>Неограниченные упоминания</li>
-                    <li>Размещение в 3-х местах</li>
-                    <li>Персональный менеджер</li>
-                    <li>Эксклюзивная анимация</li>
-                    <li>Интерактивные элементы</li>
-                    <li>Расширенная аналитика</li>
+                    <li data-key="feature12">До 60 секунд рекламы</li>
+                    <li data-key="feature13">Неограниченные упоминания</li>
+                    <li data-key="feature14">Размещение в 3-х местах</li>
+                    <li data-key="feature15">Персональный менеджер</li>
+                    <li data-key="feature16">Эксклюзивная анимация</li>
+                    <li data-key="feature17">Интерактивные элементы</li>
+                    <li data-key="feature18">Расширенная аналитика</li>
                 </ul>
-                <a href="#contact" class="btn btn-primary">Выбрать</a>
+                <a href="#contact" class="btn btn-primary" data-key="chooseBtn">Выбрать</a>
             </div>
         </div>
     </section>
 
     <section id="timing">
-        <h2 class="section-title">Оптимальное размещение рекламы</h2>
+        <h2 class="section-title" data-key="placementTitle">Оптимальное размещение рекламы</h2>
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3>Вступление (0:00-0:15)</h3>
-                    <p>Идеально для привлечения внимания в начале видео. Зрители наиболее сконцентрированы в первые секунды.</p>
+                    <h3 data-key="timing1">Вступление (0:00-0:15)</h3>
+                    <p data-key="timingDesc1">Идеально для привлечения внимания в начале видео. Зрители наиболее сконцентрированы в первые секунды.</p>
                 </div>
             </div>
             
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3>Перед основной частью (0:45-1:15)</h3>
-                    <p>После установления контакта с аудиторией, но перед переходом к основной теме. Зрители уже вовлечены.</p>
+                    <h3 data-key="timing2">Перед основной частью (0:45-1:15)</h3>
+                    <p data-key="timingDesc2">После установления контакта с аудиторией, но перед переходом к основной теме. Зрители уже вовлечены.</p>
                 </div>
             </div>
             
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3>В середине действия (2:30-3:00)</h3>
-                    <p>Во время кульминации контента, когда внимание зрителя достигает пика. Отлично подходит для эмоционального воздействия.</p>
+                    <h3 data-key="timing3">В середине действия (2:30-3:00)</h3>
+                    <p data-key="timingDesc3">Во время кульминации контента, когда внимание зрителя достигает пика. Отлично подходит для эмоционального воздействия.</p>
                 </div>
             </div>
             
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3>Перед заключением (4:30-5:00)</h3>
-                    <p>Когда основная информация уже представлена, но зритель еще не начал отвлекаться. Идеально для call-to-action.</p>
+                    <h3 data-key="timing4">Перед заключением (4:30-5:00)</h3>
+                    <p data-key="timingDesc4">Когда основная информация уже представлена, но зритель еще не начал отвлекаться. Идеально для call-to-action.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="contract">
-        <h2 class="section-title">Условия сотрудничества</h2>
+        <h2 class="section-title" data-key="conditionsTitle">Условия сотрудничества</h2>
         <div class="contract">
-            <h3>Наши принципы работы</h3>
-            <p>Мы стремимся к созданию долгосрочных партнерских отношений, основанных на прозрачности и взаимном уважении.</p>
+            <h3 data-key="principlesTitle">Наши принципы работы</h3>
+            <p data-key="principlesText">Мы стремимся к созданию долгосрочных партнерских отношений, основанных на прозрачности и взаимном уважении.</p>
             
             <ul class="contract-list">
-                <li>Минимальный срок сотрудничества - 3 месяца для достижения измеримых результатов</li>
-                <li>Предоплата 50% при заключении договора, остальные 50% после размещения рекламы</li>
-                <li>Возможность внесения правок в рекламный материал до 3 раз бесплатно</li>
-                <li>Ежемесячные отчеты об эффективности рекламной кампании</li>
-                <li>Гарантия размещения рекламы в оговоренные сроки</li>
-                <li>Конфиденциальность всей предоставленной информации</li>
-                <li>Возврат средств при несоблюдении условий договора с нашей стороны</li>
+                <li data-key="condition1">Минимальный срок сотрудничества - 3 месяца для достижения измеримых результатов</li>
+                <li data-key="condition2">Предоплата 50% при заключении договора, остальные 50% после размещения рекламы</li>
+                <li data-key="condition3">Возможность внесения правок в рекламный материал до 3 раз бесплатно</li>
+                <li data-key="condition4">Ежемесячные отчеты об эффективности рекламной кампании</li>
+                <li data-key="condition5">Гарантия размещения рекламы в оговоренные сроки</li>
+                <li data-key="condition6">Конфиденциальность всей предоставленной информации</li>
+                <li data-key="condition7">Возврат средств при несоблюдении условий договора с нашей стороны</li>
             </ul>
             
             <div class="cta-buttons" style="justify-content: center; margin-top: 3rem;">
                 <a href="mailto:contract@fxads.com" class="btn btn-accent">
-                    <i class="fas fa-file-contract"></i> Запросить договор
+                    <i class="fas fa-file-contract"></i> <span data-key="contractBtn">Запросить договор</span>
                 </a>
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2 class="section-title">Свяжитесь с нами</h2>
+        <h2 class="section-title" data-key="contactTitle">Свяжитесь с нами</h2>
         <div class="contact">
             <form class="contact-form">
                 <div class="form-group">
-                    <label for="name">Ваше имя</label>
+                    <label for="name" data-key="nameLabel">Ваше имя</label>
                     <input type="text" id="name" placeholder="Иван Иванов" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email" data-key="emailLabel">Email</label>
                     <input type="email" id="email" placeholder="example@mail.com" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="phone">Телефон</label>
+                    <label for="phone" data-key="phoneLabel">Телефон</label>
                     <input type="tel" id="phone" placeholder="+7 (999) 999-99-99">
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">Сообщение</label>
+                    <label for="message" data-key="messageLabel">Сообщение</label>
                     <textarea id="message" placeholder="Расскажите о вашем проекте и пожеланиях по рекламе..." required></textarea>
                 </div>
                 
-                <button type="submit" class="btn btn-primary" style="width: 100%">
+                <button type="submit" class="btn btn-primary" style="width: 100%" data-key="submitBtn">
                     <i class="fas fa-paper-plane"></i> Отправить запрос
                 </button>
             </form>
             
-            <div class="cta-buttons" style="margin-top: 3rem;">
+            <div class="cta-buttons" style="margin-top: 3rem; flex-wrap: wrap;">
                 <a href="tel:+74951234567" class="btn btn-secondary">
                     <i class="fas fa-phone"></i> +7 (495) 123-45-67
                 </a>
@@ -893,12 +1012,12 @@
         <div class="footer-content">
             <div class="footer-logo">FXADS</div>
             <div class="footer-links">
-                <a href="#pricing">Цены</a>
-                <a href="#timing">Размещение</a>
-                <a href="#contract">Условия</a>
-                <a href="#contact">Контакты</a>
-                <a href="#">Политика конфиденциальности</a>
-                <a href="#">FAQ</a>
+                <a href="#pricing" data-key="footerPricing">Цены</a>
+                <a href="#timing" data-key="footerPlacement">Размещение</a>
+                <a href="#contract" data-key="footerConditions">Условия</a>
+                <a href="#contact" data-key="footerContacts">Контакты</a>
+                <a href="#" data-key="footerPrivacy">Политика конфиденциальности</a>
+                <a href="#" data-key="footerFAQ">FAQ</a>
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-vk"></i></a>
@@ -906,11 +1025,286 @@
                 <a href="#"><i class="fab fa-youtube"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="copyright">© 2023 FXADS. Все права защищены.</div>
+            
+            <!-- Новый блок подписки -->
+            <div class="subscription">
+                <h3 data-key="subscribeTitle">Подпишитесь на обновления</h3>
+                <p data-key="subscribeText">Получайте новости о наших акциях и специальных предложениях первыми</p>
+                <div class="subscription-buttons">
+                    <a href="#" class="btn btn-primary" data-key="subscribeBtn">
+                        <i class="fas fa-bell"></i> Подписаться на новости
+                    </a>
+                    <a href="#" class="btn btn-accent" data-key="contactBtn">
+                        <i class="fas fa-headset"></i> Связаться с поддержкой
+                    </a>
+                </div>
+            </div>
+            
+            <div class="copyright">© 2023 FXADS. <span data-key="rightsText">Все права защищены.</span></div>
         </div>
     </footer>
 
     <script>
+        // Переключение языка
+        const translations = {
+            ru: {
+                pricing: "Цены",
+                placement: "Размещение",
+                conditions: "Условия",
+                contacts: "Контакты",
+                heroTitle: "Революция в видеорекламе",
+                heroSubtitle: "Инновационные решения для интеграции рекламы в ваши видео с максимальным вовлечением аудитории",
+                orderBtn: "Заказать рекламу",
+                pricesBtn: "Посмотреть цены",
+                pricingTitle: "Наши тарифы",
+                starterPlan: "Стартовый",
+                proPlan: "Профессиональный",
+                premiumPlan: "Премиум",
+                perVideo: "за ролик",
+                feature1: "До 15 секунд рекламы",
+                feature2: "1 упоминание бренда",
+                feature3: "Размещение в начале видео",
+                feature4: "Базовый отчет",
+                feature5: "Стандартная анимация",
+                feature6: "До 30 секунд рекламы",
+                feature7: "3 упоминания бренда",
+                feature8: "Размещение в 2-х местах",
+                feature9: "Детализированный отчет",
+                feature10: "Продвинутая анимация",
+                feature11: "Интерактивные элементы",
+                feature12: "До 60 секунд рекламы",
+                feature13: "Неограниченные упоминания",
+                feature14: "Размещение в 3-х местах",
+                feature15: "Персональный менеджер",
+                feature16: "Эксклюзивная анимация",
+                feature17: "Интерактивные элементы",
+                feature18: "Расширенная аналитика",
+                chooseBtn: "Выбрать",
+                placementTitle: "Оптимальное размещение рекламы",
+                timing1: "Вступление (0:00-0:15)",
+                timingDesc1: "Идеально для привлечения внимания в начале видео. Зрители наиболее сконцентрированы в первые секунды.",
+                timing2: "Перед основной частью (0:45-1:15)",
+                timingDesc2: "После установления контакта с аудиторией, но перед переходом к основной теме. Зрители уже вовлечены.",
+                timing3: "В середине действия (2:30-3:00)",
+                timingDesc3: "Во время кульминации контента, когда внимание зрителя достигает пика. Отлично подходит для эмоционального воздействия.",
+                timing4: "Перед заключением (4:30-5:00)",
+                timingDesc4: "Когда основная информация уже представлена, но зритель еще не начал отвлекаться. Идеально для call-to-action.",
+                conditionsTitle: "Условия сотрудничества",
+                principlesTitle: "Наши принципы работы",
+                principlesText: "Мы стремимся к созданию долгосрочных партнерских отношений, основанных на прозрачности и взаимном уважении.",
+                condition1: "Минимальный срок сотрудничества - 3 месяца для достижения измеримых результатов",
+                condition2: "Предоплата 50% при заключении договора, остальные 50% после размещения рекламы",
+                condition3: "Возможность внесения правок в рекламный материал до 3 раз бесплатно",
+                condition4: "Ежемесячные отчеты об эффективности рекламной кампании",
+                condition5: "Гарантия размещения рекламы в оговоренные сроки",
+                condition6: "Конфиденциальность всей предоставленной информации",
+                condition7: "Возврат средств при несоблюдении условий договора с нашей стороны",
+                contractBtn: "Запросить договор",
+                contactTitle: "Свяжитесь с нами",
+                nameLabel: "Ваше имя",
+                emailLabel: "Email",
+                phoneLabel: "Телефон",
+                messageLabel: "Сообщение",
+                submitBtn: "Отправить запрос",
+                footerPricing: "Цены",
+                footerPlacement: "Размещение",
+                footerConditions: "Условия",
+                footerContacts: "Контакты",
+                footerPrivacy: "Политика конфиденциальности",
+                footerFAQ: "FAQ",
+                rightsText: "Все права защищены.",
+                subscribeTitle: "Подпишитесь на обновления",
+                subscribeText: "Получайте новости о наших акциях и специальных предложениях первыми",
+                subscribeBtn: "Подписаться на новости",
+                contactBtn: "Связаться с поддержкой"
+            },
+            en: {
+                pricing: "Pricing",
+                placement: "Placement",
+                conditions: "Conditions",
+                contacts: "Contacts",
+                heroTitle: "Revolution in Video Advertising",
+                heroSubtitle: "Innovative solutions for integrating ads into your videos with maximum audience engagement",
+                orderBtn: "Order Advertising",
+                pricesBtn: "View Prices",
+                pricingTitle: "Our Pricing Plans",
+                starterPlan: "Starter",
+                proPlan: "Professional",
+                premiumPlan: "Premium",
+                perVideo: "per video",
+                feature1: "Up to 15 seconds of advertising",
+                feature2: "1 brand mention",
+                feature3: "Placement at the beginning",
+                feature4: "Basic report",
+                feature5: "Standard animation",
+                feature6: "Up to 30 seconds of advertising",
+                feature7: "3 brand mentions",
+                feature8: "Placement in 2 locations",
+                feature9: "Detailed report",
+                feature10: "Advanced animation",
+                feature11: "Interactive elements",
+                feature12: "Up to 60 seconds of advertising",
+                feature13: "Unlimited mentions",
+                feature14: "Placement in 3 locations",
+                feature15: "Personal manager",
+                feature16: "Exclusive animation",
+                feature17: "Interactive elements",
+                feature18: "Advanced analytics",
+                chooseBtn: "Select",
+                placementTitle: "Optimal Ad Placement",
+                timing1: "Introduction (0:00-0:15)",
+                timingDesc1: "Perfect for grabbing attention at the start. Viewers are most focused in the first seconds.",
+                timing2: "Before main content (0:45-1:15)",
+                timingDesc2: "After establishing connection with audience but before transitioning to main topic. Viewers are already engaged.",
+                timing3: "Mid-action (2:30-3:00)",
+                timingDesc3: "During content climax when viewer attention peaks. Great for emotional impact.",
+                timing4: "Before conclusion (4:30-5:00)",
+                timingDesc4: "When main information is presented but viewer hasn't started to lose focus. Ideal for call-to-action.",
+                conditionsTitle: "Cooperation Terms",
+                principlesTitle: "Our Principles",
+                principlesText: "We strive to build long-term partnerships based on transparency and mutual respect.",
+                condition1: "Minimum cooperation period - 3 months for measurable results",
+                condition2: "50% prepayment when signing contract, remaining 50% after ad placement",
+                condition3: "Up to 3 free revisions of advertising material",
+                condition4: "Monthly campaign effectiveness reports",
+                condition5: "Guaranteed ad placement within agreed timeframe",
+                condition6: "Confidentiality of all provided information",
+                condition7: "Refund if we fail to meet contract terms",
+                contractBtn: "Request Contract",
+                contactTitle: "Contact Us",
+                nameLabel: "Your Name",
+                emailLabel: "Email",
+                phoneLabel: "Phone",
+                messageLabel: "Message",
+                submitBtn: "Send Request",
+                footerPricing: "Pricing",
+                footerPlacement: "Placement",
+                footerConditions: "Conditions",
+                footerContacts: "Contacts",
+                footerPrivacy: "Privacy Policy",
+                footerFAQ: "FAQ",
+                rightsText: "All rights reserved.",
+                subscribeTitle: "Subscribe to Updates",
+                subscribeText: "Be the first to receive news about our promotions and special offers",
+                subscribeBtn: "Subscribe to News",
+                contactBtn: "Contact Support"
+            },
+            es: {
+                pricing: "Precios",
+                placement: "Colocación",
+                conditions: "Condiciones",
+                contacts: "Contactos",
+                heroTitle: "Revolución en publicidad de video",
+                heroSubtitle: "Soluciones innovadoras para integrar anuncios en tus videos con máximo compromiso de la audiencia",
+                orderBtn: "Pedir Publicidad",
+                pricesBtn: "Ver Precios",
+                pricingTitle: "Nuestros Planes de Precios",
+                starterPlan: "Básico",
+                proPlan: "Profesional",
+                premiumPlan: "Premium",
+                perVideo: "por video",
+                feature1: "Hasta 15 segundos de publicidad",
+                feature2: "1 mención de marca",
+                feature3: "Colocación al principio",
+                feature4: "Informe básico",
+                feature5: "Animación estándar",
+                feature6: "Hasta 30 segundos de publicidad",
+                feature7: "3 menciones de marca",
+                feature8: "Colocación en 2 ubicaciones",
+                feature9: "Informe detallado",
+                feature10: "Animación avanzada",
+                feature11: "Elementos interactivos",
+                feature12: "Hasta 60 segundos de publicidad",
+                feature13: "Menciones ilimitadas",
+                feature14: "Colocación en 3 ubicaciones",
+                feature15: "Gerente personal",
+                feature16: "Animación exclusiva",
+                feature17: "Elementos interactivos",
+                feature18: "Análisis avanzado",
+                chooseBtn: "Seleccionar",
+                placementTitle: "Colocación Óptima de Anuncios",
+                timing1: "Introducción (0:00-0:15)",
+                timingDesc1: "Perfecto para captar la atención al inicio. Los espectadores están más concentrados en los primeros segundos.",
+                timing2: "Antes del contenido principal (0:45-1:15)",
+                timingDesc2: "Después de establecer conexión con la audiencia pero antes de pasar al tema principal. Los espectadores ya están comprometidos.",
+                timing3: "En medio de la acción (2:30-3:00)",
+                timingDesc3: "Durante el clímax del contenido cuando la atención del espectador alcanza su punto máximo. Ideal para impacto emocional.",
+                timing4: "Antes de la conclusión (4:30-5:00)",
+                timingDesc4: "Cuando la información principal ya se ha presentado pero el espectador aún no ha comenzado a distraerse. Perfecto para call-to-action.",
+                conditionsTitle: "Términos de Cooperación",
+                principlesTitle: "Nuestros Principios",
+                principlesText: "Nos esforzamos por construir asociaciones a largo plazo basadas en la transparencia y el respeto mutuo.",
+                condition1: "Período mínimo de cooperación: 3 meses para resultados medibles",
+                condition2: "Pago anticipado del 50% al firmar el contrato, el 50% restante después de la colocación del anuncio",
+                condition3: "Hasta 3 revisiones gratuitas del material publicitario",
+                condition4: "Informes mensuales de efectividad de la campaña",
+                condition5: "Colocación garantizada del anuncio dentro del plazo acordado",
+                condition6: "Confidencialidad de toda la información proporcionada",
+                condition7: "Reembolso si no cumplimos con los términos del contrato",
+                contractBtn: "Solicitar Contrato",
+                contactTitle: "Contáctenos",
+                nameLabel: "Tu nombre",
+                emailLabel: "Correo electrónico",
+                phoneLabel: "Teléfono",
+                messageLabel: "Mensaje",
+                submitBtn: "Enviar Solicitud",
+                footerPricing: "Precios",
+                footerPlacement: "Colocación",
+                footerConditions: "Condiciones",
+                footerContacts: "Contactos",
+                footerPrivacy: "Política de Privacidad",
+                footerFAQ: "Preguntas Frecuentes",
+                rightsText: "Todos los derechos reservados.",
+                subscribeTitle: "Suscríbete a Actualizaciones",
+                subscribeText: "Sé el primero en recibir noticias sobre nuestras promociones y ofertas especiales",
+                subscribeBtn: "Suscribirse a Noticias",
+                contactBtn: "Contactar con Soporte"
+            }
+        };
+
+        const langButtons = document.querySelectorAll('.lang-btn');
+        let currentLang = 'ru';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const translation = translations[lang];
+            
+            // Обновляем все элементы с data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translation[key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translation[key];
+                    } else {
+                        element.textContent = translation[key];
+                    }
+                }
+            });
+            
+            // Обновляем активную кнопку языка
+            langButtons.forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                changeLanguage(lang);
+                localStorage.setItem('fxads-lang', lang);
+            });
+        });
+
+        // Проверяем сохранённый язык
+        const savedLang = localStorage.getItem('fxads-lang');
+        if (savedLang) {
+            changeLanguage(savedLang);
+        }
+
         // Плавная прокрутка для навигации
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -925,6 +1319,9 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                    
+                    // Закрываем мобильное меню после клика
+                    document.querySelector('.nav-links').classList.remove('active');
                 }
             });
         });
@@ -936,7 +1333,13 @@
             
             // Здесь обычно отправка формы на сервер
             // Для примера просто покажем сообщение
-            alert('Спасибо за ваш запрос! Мы свяжемся с вами в ближайшее время.');
+            if (currentLang === 'ru') {
+                alert('Спасибо за ваш запрос! Мы свяжемся с вами в ближайшее время.');
+            } else if (currentLang === 'en') {
+                alert('Thank you for your request! We will contact you shortly.');
+            } else if (currentLang === 'es') {
+                alert('¡Gracias por su solicitud! Nos pondremos en contacto con usted a la brevedad.');
+            }
             contactForm.reset();
         });
         
@@ -959,31 +1362,23 @@
             observer.observe(el);
         });
         
-        // Переключение языка
-        const langButtons = document.querySelectorAll('.lang-btn');
-        langButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                langButtons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Здесь можно добавить логику смены языка
-                alert('Язык изменен на ' + this.textContent);
-            });
+        // Переключение мобильного меню
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
         });
         
-        // Анимация кнопок при загрузке
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mousemove', e => {
-                const rect = btn.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / btn.offsetWidth - 0.5;
-                const y = (e.clientY - rect.top) / btn.offsetHeight - 0.5;
-                
-                btn.style.transform = `translateY(-7px) scale(1.05) rotateX(${y * 5}deg) rotateY(${x * 5}deg)`;
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translateY(-7px) scale(1.05)';
-            });
+        // Обработка кнопки подписки
+        document.querySelector('.subscription-buttons .btn-primary').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (currentLang === 'ru') {
+                alert('Спасибо за подписку! Вы будете получать наши новости.');
+            } else if (currentLang === 'en') {
+                alert('Thank you for subscribing! You will receive our updates.');
+            } else if (currentLang === 'es') {
+                alert('¡Gracias por suscribirse! Recibirá nuestras actualizaciones.');
+            }
         });
     </script>
 </body>
