@@ -376,7 +376,7 @@
             border-bottom: none;
         }
         
-        /* Timeline section */
+        /* Timeline section - ИСПРАВЛЕННЫЕ ТОЧКИ */
         #timing {
             background: radial-gradient(circle at top right, rgba(74, 108, 250, 0.1) 0%, transparent 30%);
         }
@@ -457,14 +457,16 @@
             background: var(--accent);
             top: 20px;
             box-shadow: 0 0 0 8px rgba(0, 210, 255, 0.2);
+            z-index: 10;
         }
         
+        /* ИСПРАВЛЕНИЕ: Сдвигаем точки левее для выравнивания */
         .timeline-item:nth-child(odd)::before {
-            right: -12px;
+            right: -10px; /* Было -12px */
         }
         
         .timeline-item:nth-child(even)::before {
-            left: -8px;
+            left: -10px; /* Было -8px */
         }
         
         /* Contract section */
@@ -732,9 +734,10 @@
                 text-align: left;
             }
             
-            .timeline-item:nth-child(odd)::before,
-            .timeline-item:nth-child(even)::before {
-                left: 30px;
+            /* ИСПРАВЛЕНИЕ для мобильных: сдвигаем точки левее */
+            .timeline-item::before {
+                left: 28px !important; /* Было 30px */
+                right: auto !important;
             }
         }
         
@@ -807,11 +810,6 @@
             
             .timeline-item {
                 padding-left: 50px;
-            }
-            
-            .timeline-item:nth-child(odd)::before,
-            .timeline-item:nth-child(even)::before {
-                left: 20px;
             }
             
             .contract,
