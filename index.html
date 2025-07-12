@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продвижение рекламы в видеоформате</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4a6cfa;
+            --secondary: #ff6b6b;
+            --accent: #45d7c1;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: radial-gradient(circle at top right, rgba(74, 108, 250, 0.1) 0%, transparent 30%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: -150px;
+            left: -150px;
+            opacity: 0.3;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            opacity: 0.3;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 8s ease infinite;
+            background-size: 200% auto;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+            color: #e0e0ff;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), #6a5af9);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--secondary), #ff8e8e);
+            color: white;
+        }
+        
+        .btn-accent {
+            background: linear-gradient(45deg, var(--accent), #5debd7);
+            color: var(--dark);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            transform: scale(0, 1);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        
+        .btn:hover::before {
+            transform: scale(1, 1);
+            transform-origin: left;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        section {
+            padding: 8rem 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #aaa;
+        }
+        
+        .features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+        
+        .features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .features li:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            width: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 4rem;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 4rem;
+        }
+        
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .timeline-content h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-content p {
+            color: #ddd;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            top: 20px;
+        }
+        
+        .timeline-item:nth-child(odd)::before {
+            right: -12px;
+        }
+        
+        .timeline-item:nth-child(even)::before {
+            left: -8px;
+        }
+        
+        .contract {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contract h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .contract p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .contract-list {
+            list-style-type: none;
+            margin: 2rem 0;
+        }
+        
+        .contract-list li {
+            padding: 1rem 0 1rem 2.5rem;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contract-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .contract-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 1rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ddd;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background: rgba(10, 10, 20, 0.9);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Ad<span>Vista</span></div>
+            <div class="nav-links">
+                <a href="#pricing">Цены</a>
+                <a href="#timing">Размещение</a>
+                <a href="#contract">Условия</a>
+                <a href="#contact">Контакты</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Эффективная реклама в ваших видео</h1>
+        <p>Увеличьте узнаваемость бренда и привлеките новых клиентов с помощью профессионально интегрированной рекламы в ваши видеоролики</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> Заказать рекламу
+            </a>
+            <a href="mailto:advert@advista.ru?subject=Запрос на рекламу" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i> Написать нам
+            </a>
+            <a href="#pricing" class="btn btn-accent">
+                <i class="fas fa-tags"></i> Посмотреть цены
+            </a>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <h2 class="section-title">Наши цены</h2>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3>Базовый</h3>
+                <div class="price">$199<span>/ролик</span></div>
+                <ul class="features">
+                    <li>До 15 секунд рекламы</li>
+                    <li>1 упоминание бренда</li>
+                    <li>Размещение в начале видео</li>
+                    <li>Базовый отчет</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Выбрать</a>
+            </div>
+            
+            <div class="pricing-card">
+                <h3>Профессиональный</h3>
+                <div class="price">$499<span>/ролик</span></div>
+                <ul class="features">
+                    <li>До 30 секунд рекламы</li>
+                    <li>3 упоминания бренда</li>
+                    <li>Размещение в 2-х местах</li>
+                    <li>Детализированный отчет</li>
+                    <li>Анимация логотипа</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Выбрать</a>
+            </div>
+            
+            <div class="pricing-card">
+                <h3>Премиум</h3>
+                <div class="price">$999<span>/ролик</span></div>
+                <ul class="features">
+                    <li>До 60 секунд рекламы</li>
+                    <li>Неограниченные упоминания</li>
+                    <li>Размещение в 3-х местах</li>
+                    <li>Интерактивные элементы</li>
+                    <li>Персональный менеджер</li>
+                    <li>Расширенная аналитика</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Выбрать</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="timing">
+        <h2 class="section-title">Оптимальное размещение рекламы</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Вступление (0:00-0:15)</h3>
+                    <p>Идеально для привлечения внимания в начале видео. Зрители наиболее сконцентрированы в первые секунды.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Перед основной частью (0:45-1:15)</h3>
+                    <p>После установления контакта с аудиторией, но перед переходом к основной теме. Зрители уже вовлечены.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>В середине действия (2:30-3:00)</h3>
+                    <p>Во время кульминации контента, когда внимание зрителя достигает пика. Отлично подходит для эмоционального воздействия.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Перед заключением (4:30-5:00)</h3>
+                    <p>Когда основная информация уже представлена, но зритель еще не начал отвлекаться. Идеально для call-to-action.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contract">
+        <h2 class="section-title">Условия сотрудничества</h2>
+        <div class="contract">
+            <h3>Наши принципы работы</h3>
+            <p>Мы стремимся к созданию долгосрочных партнерских отношений, основанных на прозрачности и взаимном уважении.</p>
+            
+            <ul class="contract-list">
+                <li>Минимальный срок сотрудничества - 3 месяца для достижения измеримых результатов</li>
+                <li>Предоплата 50% при заключении договора, остальные 50% после размещения рекламы</li>
+                <li>Возможность внесения правок в рекламный материал до 3 раз бесплатно</li>
+                <li>Ежемесячные отчеты об эффективности рекламной кампании</li>
+                <li>Гарантия размещения рекламы в оговоренные сроки</li>
+                <li>Конфиденциальность всей предоставленной информации</li>
+                <li>Возврат средств при несоблюдении условий договора с нашей стороны</li>
+            </ul>
+            
+            <div class="cta-buttons" style="justify-content: center; margin-top: 3rem;">
+                <a href="mailto:contract@advista.ru" class="btn btn-accent">
+                    <i class="fas fa-file-contract"></i> Запросить договор
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Свяжитесь с нами</h2>
+        <div class="contact">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" placeholder="Иван Иванов" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="example@mail.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" placeholder="+7 (999) 999-99-99">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" placeholder="Расскажите о вашем проекте и пожеланиях по рекламе..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%">
+                    <i class="fas fa-paper-plane"></i> Отправить запрос
+                </button>
+            </form>
+            
+            <div class="cta-buttons" style="margin-top: 3rem;">
+                <a href="tel:+74951234567" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> +7 (495) 123-45-67
+                </a>
+                <a href="mailto:info@advista.ru" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> info@advista.ru
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">AdVista</div>
+            <div class="footer-links">
+                <a href="#pricing">Цены</a>
+                <a href="#timing">Размещение</a>
+                <a href="#contract">Условия</a>
+                <a href="#contact">Контакты</a>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="copyright">© 2023 AdVista. Все права защищены.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Обработка формы
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Здесь обычно отправка формы на сервер
+            // Для примера просто покажем сообщение
+            alert('Спасибо за ваш запрос! Мы свяжемся с вами в ближайшее время.');
+            contactForm.reset();
+        });
+        
+        // Анимация при прокрутке
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.pricing-card, .timeline-item, .contract').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
