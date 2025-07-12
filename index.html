@@ -890,20 +890,20 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin: 30px 0;
+            gap: 40px;
+            margin: 40px 0;
         }
         
         .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 100px; /* Увеличено в 2 раза */
+            height: 100px; /* Увеличено в 2 раза */
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+            border-radius: 25%; /* Скругленный квадрат */
             color: white;
-            font-size: 1.8rem;
+            font-size: 3rem; /* Увеличено в 2 раза */
             transition: var(--transition);
             position: relative;
             overflow: hidden;
@@ -924,7 +924,7 @@
         }
         
         .social-links a:hover {
-            transform: translateY(-8px) rotate(5deg);
+            transform: translateY(-10px) rotate(5deg) scale(1.1);
             color: white;
         }
         
@@ -1030,6 +1030,16 @@
             .top-nav li {
                 margin: 5px;
             }
+            
+            .social-links {
+                gap: 25px;
+            }
+            
+            .social-links a {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
         }
         
         @media (max-width: 600px) {
@@ -1040,6 +1050,12 @@
             
             .theme-row-label {
                 grid-column: span 3;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
             }
         }
         
@@ -1063,6 +1079,10 @@
             
             .order-form {
                 padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
             }
         }
         
@@ -1393,10 +1413,8 @@
         <footer>
             <div class="footer-logo">FxAds</div>
             <div class="social-links">
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:flaooot848@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.youtube.com/@felxotsus" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.t.me/felxot_sus" target="_blank"><i class="fab fa-telegram"></i></a>
             </div>
             <p class="copyright" data-lang-key="copyright">© 2025 FxAds. Все права защищены.</p>
             <p class="theme-info">Текущая тема: <span id="current-theme">Розовая (Темная)</span></p>
